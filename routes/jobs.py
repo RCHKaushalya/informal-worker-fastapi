@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from database import db
-from models import PostJob, ListJobs
+from models import PostJob, Nic
 from datetime import datetime
 
 router = APIRouter()
@@ -30,7 +30,7 @@ def post_job(new_job: PostJob):
     return {'message': 'Job posted successfully'}
 
 @router.post('/list-jobs')
-def list_jobs(get_job: ListJobs):
+def list_jobs(get_job: Nic):
     user_ref = db.collection('users').document(get_job.nic)
     user_doc = user_ref.get()
 

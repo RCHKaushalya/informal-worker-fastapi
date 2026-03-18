@@ -21,5 +21,5 @@ class PostJob(BaseModel):
     description: str
     skills: list[str]
 
-class ListJobs(BaseModel):
+class Nic(BaseModel):
     nic: str

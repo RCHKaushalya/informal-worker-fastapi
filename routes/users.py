@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from database import db
-from models import SkillUpdate, RegisterUser, AreaUpdate
+from models import SkillUpdate, RegisterUser, AreaUpdate, Nic
 
 router = APIRouter()
 
@@ -45,3 +45,13 @@ def update_area(update: AreaUpdate):
 
     return {'message': 'Area updated successfully'}
 
+@router.post('/user_skills')
+def get_user_skills(user: Nic):
+    user_ref = db.collection('users').document(user.nic)
+    user_doc = user_ref.get()
+
+    if not user_doc.exists:
+        return {'error': 'User not found'}
+
+    skills = user_doc.to_dict().get('skills', [])
+    return {'skills': skills}
