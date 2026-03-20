@@ -1,0 +1,16 @@
+Users
+{
+  "nic": "001",
+  "first_name": "user",
+  "second_name": "1",
+  "phone": "0780000001",
+  "language": "si"
+}
+
+{
+  "nic": "002",
+  "first_name": "user",
+  "second_name": "2",
+  "phone": "0780000002",
+  "language": "si"
+}

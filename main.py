@@ -1,12 +1,15 @@
 from fastapi import FastAPI
-from routes import users, jobs, skills
+from db import engine, Base
+from routes import user
 
 app = FastAPI()
 
-@app.post('')
-def home():
-    return {'message': 'Informal worker platform'}
+@app.on_event("startup")
+def startup():
+    Base.metadata.create_all(bind=engine)
 
-app.include_router(users.router)
-app.include_router(jobs.router)
-app.include_router(skills.router)
+@app.get("/")
+def root():
+    return {"message": "API running 🚀"}
+
+app.include_router(user.router)
